@@ -197,6 +197,7 @@ public class VormerkWerkzeug {
 		// Hat Kunde schon das Medium ausgeliehen: darf nicht vormerken
 		// und es darf maximal 3 Vormerker geben
 		return vormerkenMoeglich;
+		//test
 	}
 
 	/**
