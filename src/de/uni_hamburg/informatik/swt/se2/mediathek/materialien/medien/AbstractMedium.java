@@ -17,6 +17,11 @@ abstract class AbstractMedium implements Medium
      * Gebühr für einen Tag
      */
     private final int _tagesmietgebuehr;
+    
+    /*
+     * Vormerkkarte des Mediums
+     * */
+    private Vormerkkarte _vormerkkarte;
 
     /**
      * Ein Kommentar zum Medium
@@ -103,6 +108,12 @@ abstract class AbstractMedium implements Medium
     {
         assert titel != null : "Vorbedingung verletzt: titel != null";
         _titel = titel;
+    }
+    
+    
+    public Vormerkkarte getVormerkkarte()
+    {
+    	return _vormerkkarte;
     }
 
 }
