@@ -15,7 +15,8 @@ public interface Medium
 
     /**
      * Berechnet die Mietgebühr in Eurofür eine angegebene Mietdauer in Tagen
-     * 
+
+* 
      * @param mietTage Die Anzahl der Ausleihtage eines Mediums
      * @return Die Mietgebühr in Euro als Geldbetrag
      * 
@@ -25,6 +26,7 @@ public interface Medium
      */
     Geldbetrag berechneMietgebuehr(int mietTage);
 
+    
     /**
      * Gibt einen formatierten Text mit allen Eigenschaften des Mediums zurück.
      * Jedes Attribute steht in einer eigenen Zeile mit der Form "Attributename:
@@ -83,5 +85,11 @@ public interface Medium
      * @ensure getTitel() == titel
      */
     public void setTitel(String titel);
+
+    /*
+     * gibt die Vormerkkarte des Mediums zurück
+     * 
+     */
+    public Vormerkkarte getVormerkkarte();
 
 }
