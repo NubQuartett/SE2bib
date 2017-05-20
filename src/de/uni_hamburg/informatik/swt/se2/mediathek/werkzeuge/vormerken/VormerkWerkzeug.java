@@ -188,16 +188,22 @@ public class VormerkWerkzeug {
 	 * @return true, wenn vormerken möglich ist, sonst false.
 	 */
 	private boolean istVormerkenMoeglich() {
-		List<Medium> medien = _medienAuflisterWerkzeug.getSelectedMedien();
-		Kunde kunde = _kundenAuflisterWerkzeug.getSelectedKunde();
-		// TODO für Aufgabenblatt 6 (nicht löschen): Prüfung muss noch eingebaut
-		// werden. Ist dies korrekt imlpementiert, wird der Vormerk-Button gemäß
-		// der Anforderungen a), b), c) und e) aktiviert.
-		boolean vormerkenMoeglich = (kunde != null) && !medien.isEmpty();
-		// Hat Kunde schon das Medium ausgeliehen: darf nicht vormerken
-		// und es darf maximal 3 Vormerker geben
-		return vormerkenMoeglich;
-		//test
+       	 	List<Medium> medien = _medienAuflisterWerkzeug.getSelectedMedien();
+        	Kunde kunde = _kundenAuflisterWerkzeug.getSelectedKunde();
+        	// TODO für Aufgabenblatt 6 (nicht löschen): Prüfung muss noch eingebaut
+        	// werden. Ist dies korrekt imlpementiert, wird der Vormerk-Button gemäß
+        	// der Anforderungen a), b), c) und e) aktiviert.
+        	for(Medium m : medien)
+        	{
+            		if(_vormerkkartenService.istVormerkkarteVoll(m) || 
+                    	_verleihService.istVerliehenAn(kunde,m))
+            		{
+                	return false;
+            		}
+        	}
+        	boolean vormerkenMoeglich = (kunde != null) && !medien.isEmpty();
+
+        	return vormerkenMoeglich;
 	}
 
 	/**
@@ -208,14 +214,13 @@ public class VormerkWerkzeug {
 	private void merkeAusgewaehlteMedienVor() {
 
 		List<Medium> selectedMedien = _medienAuflisterWerkzeug.getSelectedMedien();
-		Kunde selectedKunde = _kundenAuflisterWerkzeug.getSelectedKunde();
+       		Kunde selectedKunde = _kundenAuflisterWerkzeug.getSelectedKunde();
+        	// TODO für Aufgabenblatt 6 (nicht löschen): Vormerken einbauen
 
-		// istVormerkenMoeglich();
-		// Jedes Medium in der Liste durchgehen und den Kunden als Vormerker
-		// eintragen. Wenn es schon drei Vormerker gibt, nicht eintragen.
-		// Nebenso, wenn der Kunde das Medium bereits ausgeliehen hat.
-		// TODO für Aufgabenblatt 6 (nicht löschen): Vormerken einbauen
-
+		for(Medium m : selectedMedien)
+       			 {
+          		 _vormerkkartenService.neueVormerkungHinzufuegen(m, selectedKunde);
+       			 }
 	}
 
 	/**
