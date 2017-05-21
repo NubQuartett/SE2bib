@@ -42,7 +42,8 @@ public class VerleihServiceImpl extends AbstractObservableService
 
     /**
      * Der Protokollierer für die Verleihvorgänge.
-     */
+
+*/
     private VerleihProtokollierer _protokollierer;
 
     /**
@@ -51,7 +52,8 @@ public class VerleihServiceImpl extends AbstractObservableService
      * @param kundenstamm Der KundenstammService.
      * @param medienbestand Der MedienbestandService.
      * @param initialBestand Der initiale Bestand.
-     * 
+
+* 
      * @require kundenstamm != null
      * @require medienbestand != null
      * @require initialBestand != null
@@ -68,6 +70,8 @@ public class VerleihServiceImpl extends AbstractObservableService
         _medienbestand = medienbestand;
         _protokollierer = new VerleihProtokollierer();
     }
+
+
 
     /**
      * Erzeugt eine neue HashMap aus dem Initialbestand.
@@ -106,6 +110,30 @@ public class VerleihServiceImpl extends AbstractObservableService
                 medien) : "Vorbedingung verletzt: medienImBestand(medien)";
 
         return sindAlleNichtVerliehen(medien);
+    }
+
+        
+    public void neueVormerkungHinzufuegen(Medium medium, Kunde kunde)
+    {
+    	assert medium != null : "Vorbedingung verletzt: medium != null";
+    	assert kunde != null : "Vorbedingung verletzt: kunde != null";
+    	assert medium.getVormerkkarte().getVormerker3() == null : 
+    		"Vorbedingung verletzt : Vormerker3 == null";
+    	
+        Vormerkkarte vormerkkarte = medium.getVormerkkarte();
+        if(vormerkkarte.getVormerker1() == null)
+        {
+            vormerkkarte.setVormerker1(kunde);
+        }
+        else if(vormerkkarte.getVormerker2() == null)
+        {
+            vormerkkarte.setVormerker2(kunde);
+        }
+        else if(vormerkkarte.getVormerker3()== null)
+        	{
+        	vormerkkarte.setVormerker3(kunde);
+        	};
+        informiereUeberAenderung();
     }
 
     @Override
