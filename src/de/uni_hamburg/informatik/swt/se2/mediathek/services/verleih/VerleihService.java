@@ -1,3 +1,5 @@
+
+
 package de.uni_hamburg.informatik.swt.se2.mediathek.services.verleih;
 
 import java.util.List;
@@ -20,7 +22,8 @@ import de.uni_hamburg.informatik.swt.se2.mediathek.services.ObservableService;
  * 
  * @author SE2-Team
  * @version SoSe 2017
- */
+
+*/
 public interface VerleihService extends ObservableService
 {
     /**
@@ -42,7 +45,8 @@ public interface VerleihService extends ObservableService
      */
     void verleiheAn(Kunde kunde, List<Medium> medien, Datum ausleihDatum)
             throws ProtokollierException;
-
+     
+	void neueVormerkungHinzufuegen(Medium m, Kunde selectedKunde);
     /**
      * Prüft ob die ausgewählten Medium für den Kunde ausleihbar sind
      * 
